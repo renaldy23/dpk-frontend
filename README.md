@@ -1,16 +1,34 @@
 # dpkfrontend
 
-A new Flutter project.
+## DPK Tasks
 
-## Getting Started
+### User account 
+- Login
+- Register
+- Forgot password
+- Profile
+- Settings
 
-This project is a starting point for a Flutter application.
+### Dashboard
+- Depend on role
 
-A few resources to get you started if this is your first Flutter project:
+### Master 
+- Role
+- User
+- Outlet
+- Kategori
+- Merk
+- Produk
+- Suplier
+- Customer
+- 
+### Transcation
+- Purchasing
+- Gudang
+- Sales
+- Forwarder
+- 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Feature
+- Route forwarder by Google Map
+- 
