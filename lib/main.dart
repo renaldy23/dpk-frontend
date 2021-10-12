@@ -1,4 +1,6 @@
+import 'package:dpkfrontend/style.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -34,7 +36,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _globalConfig.get('appTitle'),
-      theme: ThemeData(),
+      theme: ThemeData.dark().copyWith(
+      // theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor: styleBgColor,
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+            .apply(bodyColor: Colors.white),
+        canvasColor: styleSecondaryColor,
+      ),
       onGenerateRoute: router.generateRoute,
       initialRoute: '/',
     );

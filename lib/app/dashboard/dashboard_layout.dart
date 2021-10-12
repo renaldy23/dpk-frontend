@@ -1,30 +1,23 @@
-import 'package:dpkfrontend/app/home/home_dashboard.dart';
-// import 'package:dpkfrontend/app/home/home_view_model.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:provider/provider.dart';
-
 import '/utils/responsive/responsive.dart';
-// import '/app/home/menu/menu_controller.dart';
 
-// import '/app/home/desktop/desktop_page.dart';
-// import '/app/home/mobile/mobile_page.dart';
-// import '/app/home/tablet/tablet_page.dart';
+import 'side_menu.dart';
 
-import '../dashboard/side_menu.dart';
+class DashboardLayout extends StatefulWidget {
+  const DashboardLayout({Key? key, required this.dashboard})
+      : super(key: key);
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Widget dashboard;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<DashboardLayout> createState() => _DashboardLayoutState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DashboardLayoutState extends State<DashboardLayout> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: SideMenu(),
@@ -42,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: HomeDashboard(),
+              child: widget.dashboard,
             ),
           ],
         ),

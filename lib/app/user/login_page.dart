@@ -244,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
 
           // Token
           userViewModel.setToken(token);
-
+          
           // Get current user
           UserModel user = await userService.getUserMe(token);
           userViewModel.setUser(user);

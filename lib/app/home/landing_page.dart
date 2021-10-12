@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/scheduler.dart';
 
-// import '/app/user/login_page.dart';
 import '/app/user/user_view_model.dart';
-// import '/app/user/login_page.dart';
-// import '/depend/shared_preferences/shared_preferences.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -16,9 +13,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  // final _sharedPref = SharedPrefService(sharedPref)
-  // int _userId = 0;
-
   @override
   void initState() {
     _init();

@@ -37,6 +37,12 @@ class UserService {
     return token;
   }
 
+  String getTokenString(BuildContext context) {
+    final userViewModel = context.read(userViewModelProvider.notifier);
+    // String token = userViewModel.getToken;
+    return userViewModel.getToken;
+  }
+
   //
   Future<UserModel> getUserMe(String token) async {
     late UserModel user;
@@ -47,6 +53,7 @@ class UserService {
       Response userData = await _dio.get('users/me');
       var data = userData.data;
       data['role'] = 1;
+      data['password'] = '';
       user = UserModel.fromJson(data);
       // print(user);
     } catch (e) {
@@ -99,7 +106,8 @@ class UserService {
   Future logout(BuildContext context) async {
     final userViewModel = context.read(userViewModelProvider.notifier);
     userViewModel.logout();
-    Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
   }
 
   // EOF

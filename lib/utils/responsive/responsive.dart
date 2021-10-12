@@ -45,3 +45,34 @@ class Responsive extends StatelessWidget {
     );
   }
 }
+
+// class ResponsiveDesktop extends StatelessWidget {
+//   const ResponsiveDesktop(
+//       {Key? key, required this.size, required this.menu, required this.content})
+//       : super(key: key);
+
+//   final Size size;
+//   final Widget menu, content;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         // Once our width is less then 1300 then it start showing errors
+//         // Now there is no error if our width is less then 1340
+//         Expanded(
+//           flex: size.width > 1340 ? 2 : 4,
+//           child: menu,
+//         ),
+//         // Expanded(
+//         //   flex: size.width > 1340 ? 3 : 5,
+//         //   child: Container(),
+//         // ),
+//         Expanded(
+//           flex: size.width > 1340 ? 11 : 15,
+//           child: content,
+//         ),
+//       ],
+//     );
+//   }
+// }
