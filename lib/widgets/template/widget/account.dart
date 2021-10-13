@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '/style.dart';
-import '../base/responsive.dart';
+import '../../base/responsive.dart';
 
-class TemplateAccount extends StatelessWidget {
-  const TemplateAccount({
+class TemplateWidgetAccount extends StatelessWidget {
+  const TemplateWidgetAccount({
     Key? key,
   }) : super(key: key);
 

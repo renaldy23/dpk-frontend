@@ -1,6 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:dpkfrontend/utils/api_service.dart';
-// import 'package:dpkfrontend/app/api/api_service.dart';
 import 'package:dpkfrontend/app/produk/data/produk_model.dart';
 import 'package:dpkfrontend/app/produk/data/produk_service.dart';
 import 'package:dpkfrontend/app/user/user_service.dart';
@@ -18,7 +17,6 @@ class ProdukList extends StatefulWidget {
 }
 
 class _ProdukListState extends State<ProdukList> {
-  // List<ProdukModel> _data = [];
   final _userService = UserService();
 
   final String _endPoint = 'produk';

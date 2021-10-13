@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DrawerMenu extends StatelessWidget {
-  const DrawerMenu({
+class TemplateWidgetDrawer extends StatelessWidget {
+  const TemplateWidgetDrawer({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController(initialScrollOffset: 0);
     return Drawer(
       child: ListView(
+        controller: scrollController,
         children: [
           DrawerHeader(
             child: Image.asset("assets/images/logo.png"),

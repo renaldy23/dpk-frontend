@@ -3,7 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 // Colors
 // const stylePrimaryColor = Color(0xFF3281FF);
-const styleAppBackground = Color(0xFFf8f8f8); //Color(0xFFE3F9FD); 
+const styleAppBackground = Color(0xFFf8f8f8); //Color(0xFFE3F9FD);
 const styleShadowColor = Color(0x95E9EBF0);
 const styleTextSecondaryColor = Color(0xFF757575);
 const styleViewColor = Color(0xFFDADADA);
@@ -131,3 +131,10 @@ TextStyle styleTextStyleSecondary({
     backgroundColor: backgroundColor,
   );
 }
+
+ButtonStyle styleButtonStyle(BuildContext context) => TextButton.styleFrom(
+      padding: EdgeInsets.symmetric(
+        horizontal: styleDefaultPadding * 1.5,
+        vertical: styleDefaultPadding / 1, // / (Responsive.isMobile(context) ? 2 : 1),
+      ),
+    );

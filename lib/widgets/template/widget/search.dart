@@ -2,8 +2,8 @@ import 'package:dpkfrontend/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class TemplateSearch extends StatelessWidget {
-  const TemplateSearch({
+class TemplateWidgetSearch extends StatelessWidget {
+  const TemplateWidgetSearch({
     Key? key,
   }) : super(key: key);
 

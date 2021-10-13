@@ -1,6 +1,5 @@
 import 'package:dpkfrontend/style.dart';
 import 'package:dpkfrontend/widgets/base/responsive.dart';
-// import 'package:dpkfrontend/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class TemplateBase extends StatefulWidget {
@@ -8,10 +7,13 @@ class TemplateBase extends StatefulWidget {
     Key? key,
     required this.content,
     required this.drawer,
-    required this.header,
+    this.header,
+    this.persistentFooterButtons,
   }) : super(key: key);
 
-  final Widget content, drawer, header;
+  final Widget content, drawer;
+  final Widget? header;
+  final List<Widget>? persistentFooterButtons;
 
   @override
   State<TemplateBase> createState() => _TemplateBaseState();
@@ -25,6 +27,7 @@ class _TemplateBaseState extends State<TemplateBase> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: widget.drawer,
+      persistentFooterButtons: widget.persistentFooterButtons,
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,10 +47,10 @@ class _TemplateBaseState extends State<TemplateBase> {
                 child: Column(
                   children: [
                     // Header
-                    widget.header,
-
-                    SizedBox(height: styleDefaultPadding),
-
+                    if (widget.header != null) widget.header!,
+                    if (widget.header != null)
+                      SizedBox(height: styleDefaultPadding),
+        
                     // Content
                     widget.content,
                   ],

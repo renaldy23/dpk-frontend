@@ -1,11 +1,9 @@
-// import 'dart:js';
-
 import 'package:dpkfrontend/app/home/page/home.dart';
-import 'package:dpkfrontend/app/produk/page/produk.dart';
+import 'package:dpkfrontend/app/produk/page/produk_create.dart';
 import 'package:dpkfrontend/app/produk/page/produk_list.dart';
-// import 'package:dpkfrontend/app/produk/page/produk_create.dart';
 import 'package:dpkfrontend/app/supplier/supplier_page.dart';
 import 'package:dpkfrontend/widgets/page/page_not_found.dart';
+import 'package:dpkfrontend/widgets/template/layout/dashboard.dart';
 import 'package:flutter/material.dart';
 
 import 'app/home/page/landing.dart';
@@ -24,19 +22,26 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
 
     // Produk
     case '/produk':
-      return MaterialPageRoute(builder: (context) => ProdukPage(content: ProdukList(),));
-
-    // case '/produk-create':
-    //   return MaterialPageRoute(builder: (context) => ProdukCreate());
+      return MaterialPageRoute(
+          builder: (context) => TemplateDashboard(
+                title: 'Produk',
+                content: ProdukList(),
+              ));
+    case '/produk-create':
+      return MaterialPageRoute(builder: (context) => ProdukCreate());
 
     // Master
     // case '/kategori':
     //   return MaterialPageRoute(builder: (context) => KategoriPage());
 
     case '/supplier':
-      return MaterialPageRoute(builder: (context) => SupplierPage());
+      return MaterialPageRoute(
+        builder: (context) => SupplierPage(),
+      );
 
     default:
-      return MaterialPageRoute(builder: (context) => PageNotFound());
+      return MaterialPageRoute(
+        builder: (context) => PageNotFound(),
+      );
   }
 }

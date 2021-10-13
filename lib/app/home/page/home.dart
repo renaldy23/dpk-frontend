@@ -1,11 +1,11 @@
 
+import 'package:dpkfrontend/widgets/template/widget/account.dart';
+import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
 import 'package:flutter/material.dart';
 
-import '/widgets/template/base.dart';
-import '/widgets/template/header.dart';
-import '/widgets/template/search.dart';
-import '/widgets/template/account.dart';
-import '../../../widgets/template/drawer.dart';
+import '../../../widgets/template/layout/base.dart';
+import '../../../widgets/template/widget/header.dart';
+import '../../../widgets/template/widget/search.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -13,11 +13,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TemplateBase(
-      drawer: DrawerMenu(),
-      header: TemplateHeader(
+      drawer: TemplateWidgetDrawer(),
+      header: TemplateWidgetHeader(
         title: 'Base',
-        searchWidget: TemplateSearch(),
-        accountWidget: TemplateAccount(),
+        searchWidget: TemplateWidgetSearch(),
+        accountWidget: TemplateWidgetAccount(),
       ),
       content: HomeContent(),
     );

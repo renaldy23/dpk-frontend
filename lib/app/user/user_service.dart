@@ -39,7 +39,6 @@ class UserService {
 
   String getTokenString(BuildContext context) {
     final userViewModel = context.read(userViewModelProvider.notifier);
-    // String token = userViewModel.getToken;
     return userViewModel.getToken;
   }
 
