@@ -1,8 +1,8 @@
 import 'package:dpkfrontend/style.dart';
 import 'package:flutter/material.dart';
 
-class Box extends StatelessWidget {
-  const Box({
+class ContainerBox extends StatelessWidget {
+  const ContainerBox({
     Key? key,
     required this.child,
   }) : super(key: key);

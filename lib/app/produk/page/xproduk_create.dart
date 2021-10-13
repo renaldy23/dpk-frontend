@@ -1,33 +1,33 @@
-import 'package:dpkfrontend/app/api/api_service.dart';
+import 'package:dpkfrontend/utils/api_service.dart';
 import 'package:dpkfrontend/app/kategori/kategori_model.dart';
 import 'package:dpkfrontend/app/kategori/kategori_service.dart';
 import 'package:dpkfrontend/app/kategori_berat/kategori_berat_model.dart';
 import 'package:dpkfrontend/app/kategori_berat/kategori_berat_service.dart';
 import 'package:dpkfrontend/app/merk/merk_model.dart';
 import 'package:dpkfrontend/app/merk/merk_service.dart';
-import 'package:dpkfrontend/app/produk/produk_model.dart';
+import 'package:dpkfrontend/app/produk/data/produk_model.dart';
 import 'package:dpkfrontend/app/satuan/satuan_model.dart';
 import 'package:dpkfrontend/app/satuan/satuan_service.dart';
 import 'package:dpkfrontend/app/user/user_service.dart';
 import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/utils/box/box.dart';
-import 'package:dpkfrontend/utils/input/dropdownsearch_custom.dart';
+import 'package:dpkfrontend/widgets/base/container.dart';
+import 'package:dpkfrontend/pub/dropdown_search/dropdown_search.dart';
 // import 'package:dpkfrontend/utils/input/textformfield.dart';
-import 'package:dpkfrontend/utils/input/textformfield_custom.dart';
 // import 'package:dpkfrontend/utils/input/textformfield.dart';
-import 'package:dpkfrontend/utils/responsive/responsive.dart';
-import 'package:dpkfrontend/widgets/basic.dart';
+import 'package:dpkfrontend/widgets/base/responsive.dart';
+import 'package:dpkfrontend/widgets/base/padding.dart';
+import 'package:dpkfrontend/widgets/base/textformfield.dart';
 // import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-class ProdukForm extends StatefulWidget {
-  const ProdukForm({Key? key}) : super(key: key);
+class XProdukCreate extends StatefulWidget {
+  const XProdukCreate({Key? key}) : super(key: key);
 
   @override
-  State<ProdukForm> createState() => _ProdukFormState();
+  State<XProdukCreate> createState() => _XProdukCreateState();
 }
 
-class _ProdukFormState extends State<ProdukForm> {
+class _XProdukCreateState extends State<XProdukCreate> {
   final _formKey = GlobalKey<FormState>();
 
   // Controller
@@ -137,7 +137,7 @@ class _ProdukFormState extends State<ProdukForm> {
           left: padding,
           right: padding,
         ),
-        child: Box(
+        child: ContainerBox(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

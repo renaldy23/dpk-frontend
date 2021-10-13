@@ -1,14 +1,14 @@
 // import 'dart:js';
 
-import 'package:dpkfrontend/app/kategori/kategori_page.dart';
-import 'package:dpkfrontend/app/produk/kelola_produk_page.dart';
-import 'package:dpkfrontend/app/produk/produk_create_page.dart';
+import 'package:dpkfrontend/app/home/page/home.dart';
+import 'package:dpkfrontend/app/produk/page/produk.dart';
+import 'package:dpkfrontend/app/produk/page/produk_list.dart';
+// import 'package:dpkfrontend/app/produk/page/produk_create.dart';
 import 'package:dpkfrontend/app/supplier/supplier_page.dart';
-import 'package:dpkfrontend/utils/page/page_not_found.dart';
+import 'package:dpkfrontend/widgets/page/page_not_found.dart';
 import 'package:flutter/material.dart';
 
-import '/app/home/landing_page.dart';
-import '/app/home/home_page.dart';
+import 'app/home/page/landing.dart';
 import '/app/user/login_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -22,17 +22,16 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case '/home':
       return MaterialPageRoute(builder: (context) => HomePage());
 
-    // Kelola Produk
-    case '/kelola-produk':
-      return MaterialPageRoute(builder: (context) => KelolaProdukPage());
-
     // Produk
-    case '/produk-create':
-      return MaterialPageRoute(builder: (context) => ProdukCreatePage());
+    case '/produk':
+      return MaterialPageRoute(builder: (context) => ProdukPage(content: ProdukList(),));
+
+    // case '/produk-create':
+    //   return MaterialPageRoute(builder: (context) => ProdukCreate());
 
     // Master
-    case '/kategori':
-      return MaterialPageRoute(builder: (context) => KategoriPage());
+    // case '/kategori':
+    //   return MaterialPageRoute(builder: (context) => KategoriPage());
 
     case '/supplier':
       return MaterialPageRoute(builder: (context) => SupplierPage());

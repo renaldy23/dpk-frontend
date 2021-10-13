@@ -1,46 +1,46 @@
 // import 'package:flutter/material.dart';
-// import 'package:dpkfrontend/style.dart';
-// import 'package:dpkfrontend/widgets/responsive.dart';
-// import 'package:dpkfrontend/app/dashboard/xdashboard_layout.dart';
-// import 'package:dpkfrontend/app/dashboard/dashboard_layout_content.dart';
-// import 'package:dpkfrontend/app/produk/widget/produk_detail.dart';
-// import 'package:dpkfrontend/app/produk/page/produk_list.dart';
 
-// // import '/app/kelola_produk/kelola_produk_content.dart';
+// import '/style.dart';
+// import '../../../widgets/responsive.dart';
 
-// class KategoriPage extends StatelessWidget {
-//   const KategoriPage({Key? key}) : super(key: key);
+// import '../../dashboard/xdashboard_layout.dart';
+// import '/app/dashboard/dashboard_layout_content.dart';
+// import 'produk_list.dart';
+
+
+// class ProdukPage extends StatelessWidget {
+//   const ProdukPage({Key? key}) : super(key: key);
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return DashboardLayout(
-//       dashboard: KategoriContent(),
+//       dashboard: KelolaProdukContent(),
 //     );
 //   }
 // }
 
-
-// class KategoriContent extends StatelessWidget {
-//   const KategoriContent({Key? key}) : super(key: key);
+// class KelolaProdukContent extends StatelessWidget {
+//   const KelolaProdukContent({Key? key}) : super(key: key);
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return DashboardLayoutContent(
-//       title: 'Kategori',
-//       subHeading: KategoriSubHeading(
-//         title: 'Kategori',
-//         addNew: '/kategori-create',
+//       title: 'Kelola Produk',
+//       subHeading: KelolaProdukSubHeading(
+//         title: 'Produk',
+//         addNew: '/produk-create',
 //       ),
 //       table: ProdukList(),
-//       detail: KelolaProdukDetail(
-//         title: "Data lainnya",
-//       ),
+//       // detail: Container(),
+//       // detail: KelolaProdukDetail(
+//       //   title: "Data lainnya",
+//       // ),
 //     );
 //   }
 // }
 
-// class KategoriSubHeading extends StatelessWidget {
-//   const KategoriSubHeading({
+// class KelolaProdukSubHeading extends StatelessWidget {
+//   const KelolaProdukSubHeading({
 //     Key? key,
 //     required this.title,
 //     required this.addNew,
@@ -55,9 +55,7 @@
 //       children: [
 //         Row(
 //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          
 //           children: [
-           
 //             Text(
 //               this.title,
 //               style: Theme.of(context).textTheme.subtitle1,
@@ -92,4 +90,3 @@
 //     );
 //   }
 // }
-

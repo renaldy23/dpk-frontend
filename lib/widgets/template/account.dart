@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '/style.dart';
-import '/utils/responsive/responsive.dart';
+import '../base/responsive.dart';
 
-class HomeProfileCard extends StatelessWidget {
-  const HomeProfileCard({
+class TemplateAccount extends StatelessWidget {
+  const TemplateAccount({
     Key? key,
   }) : super(key: key);
 

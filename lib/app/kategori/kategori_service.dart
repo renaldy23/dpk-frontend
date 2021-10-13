@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '/app/api/api_service.dart';
+import '../../utils/api_service.dart';
 import '/app/kategori/kategori_model.dart';
 
 class KategoriService {

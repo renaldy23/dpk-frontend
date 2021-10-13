@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SideMenu extends StatelessWidget {
-  const SideMenu({
+class DrawerMenu extends StatelessWidget {
+  const DrawerMenu({
     Key? key,
   }) : super(key: key);
 
@@ -22,8 +22,7 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Kelola Produk",
             svgSrc: "assets/icons/drop_box.svg",
-            // press: () => Navigator.of(context).pushNamedAndRemoveUntil('/kelola-produk', ModalRoute.withName('/')),
-            press: () => Navigator.pushNamed(context, '/kelola-produk'),
+            press: () => Navigator.pushNamed(context, '/produk'),
           ),
           DrawerListTile(
             title: "Pesan Barang",

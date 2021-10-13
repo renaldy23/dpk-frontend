@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:dpkfrontend/pub/shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '/utils/shared_preferences/shared_preferences.dart';
 
 final userViewModelProvider = StateNotifierProvider<UserViewModel, bool>((ref) {
   final sharedPrefService = ref.watch(sharedPrefProvider);

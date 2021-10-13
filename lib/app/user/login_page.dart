@@ -5,7 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 import '/app/user/user_model.dart';
 import '/app/user/user_service.dart';
 import '/app/user/user_view_model.dart';
-import '/utils/button/button_box.dart';
+import '../../widgets/base/button.dart';
 
 import '/style.dart';
 

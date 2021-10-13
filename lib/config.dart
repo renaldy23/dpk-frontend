@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:dpkfrontend/pub/global_configuration/global_configuration.dart';
 
-import '/utils/global_configuration/global_configuration.dart';
 
 class Config {
   final _cfg = GlobalConfig();

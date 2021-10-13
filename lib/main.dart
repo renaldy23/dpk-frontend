@@ -1,12 +1,14 @@
-import 'package:dpkfrontend/style.dart';
+import 'package:dpkfrontend/pub/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:global_configuration/global_configuration.dart';
 
-import '/utils/shared_preferences/shared_preferences.dart';
-import '/utils/global_configuration/global_configuration.dart';
+
+
+import '/style.dart';
+import '/pub/global_configuration/global_configuration.dart';
 
 import 'router.dart' as router;
 

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '/app/api/api_service.dart';
+import '../../utils/api_service.dart';
 import '/app/satuan/satuan_model.dart';
 
 class SatuanService {

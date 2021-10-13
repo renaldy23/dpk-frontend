@@ -2,8 +2,8 @@ import 'package:dpkfrontend/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomeSearchField extends StatelessWidget {
-  const HomeSearchField({
+class TemplateSearch extends StatelessWidget {
+  const TemplateSearch({
     Key? key,
   }) : super(key: key);
 

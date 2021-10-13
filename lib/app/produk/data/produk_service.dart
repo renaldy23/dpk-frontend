@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '/app/api/api_service.dart';
-import '/app/produk/produk_model.dart';
+
+import '../../../utils/api_service.dart';
+import '/app/produk/data/produk_model.dart';
 
 class ProdukService {
   final _apiService = ApiService();

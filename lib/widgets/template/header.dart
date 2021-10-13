@@ -1,35 +1,38 @@
+import 'package:dpkfrontend/widgets/base/responsive.dart';
 import 'package:flutter/material.dart';
-import '/utils/responsive/responsive.dart';
-import '/app/dashboard/dashboard_menu_profile.dart';
-import '/app/dashboard/dashboard_search.dart';
 
-
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({
+class TemplateHeader extends StatelessWidget {
+  const TemplateHeader({
     Key? key,
+    required this.title,
+    required this.searchWidget,
+    required this.accountWidget,
   }) : super(key: key);
+
+  final String title;
+  final Widget searchWidget, accountWidget;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+
+        // Menu on mobile
         if (!Responsive.isDesktop(context))
           IconButton(
             icon: Icon(Icons.menu),
-            // onPressed: context.read<MenuController>().controlMenu,
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         if (!Responsive.isMobile(context))
-          Text(
-            "Dashboard",
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          Text(title, style: Theme.of(context).textTheme.headline6),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-        Expanded(
-          child: DashboardSearch(),
-        ),
-        DashboardMenuProfile()
+        
+        // Search
+        Expanded(child: this.searchWidget),
+        
+        // Account
+        this.accountWidget
       ],
     );
   }

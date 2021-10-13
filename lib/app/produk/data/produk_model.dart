@@ -1,24 +1,24 @@
 class ProdukModel {
   int? id;
-  String? kodeProduk = "";
-  String? namaProduk = "";
-  int? kategoriId = 1;
-  int? kategoriBeratId = 1;
-  int? beratProduk = 0;
-  String? ukuran = "";
-  bool? isSpecial = false;
-  int? merkId = 1;
-  int? satuanId = 1;
-  String? keterangan = "";
-  double? hargaJual = 0;
-  double? hargaBeli = 0;
-  int? jumlahStok = 0;
-  int? minimumStok = 0;
-  bool? isRemainStok = false;
-  bool? isFavorite = false;
-  int? outletId = 1;
-  int? createdById = 1;
-  String? createdAt = "";
+  String? kodeProduk;
+  String? namaProduk;
+  int? kategoriId;
+  int? kategoriBeratId;
+  int? beratProduk;
+  String? ukuran;
+  bool? isSpecial;
+  int? merkId;
+  int? satuanId;
+  String? keterangan;
+  double? hargaJual;
+  double? hargaBeli;
+  int? jumlahStok;
+  int? minimumStok;
+  bool? isRemainStok;
+  bool? isFavorite;
+  int? outletId;
+  int? createdById;
+  String? createdAt;
 
   ProdukModel(
       {this.id,

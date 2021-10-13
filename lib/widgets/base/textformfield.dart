@@ -1,6 +1,5 @@
+import 'package:dpkfrontend/style.dart';
 import 'package:flutter/material.dart';
-import '/style.dart';
-import '/utils/input/textformfield.dart';
 
 class TextFormFieldCustom extends StatelessWidget {
   const TextFormFieldCustom(
@@ -22,7 +21,7 @@ class TextFormFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _utilTextFormField = UtilInputTextFormField();
+    final _validator = TextFormFieldValidator();
     return SizedBox(
       width: width,
       child: TextFormField(
@@ -37,8 +36,18 @@ class TextFormFieldCustom extends StatelessWidget {
           hintText: hintText,
           // icon: Icon(Icons.pages_rounded),
         ),
-        validator: (val) => validator ? _utilTextFormField.validatorEmpty(val) : null,
+        validator: (val) => validator ? _validator.isEmpty(val) : null,
       ),
     );
   }
 }
+
+class TextFormFieldValidator {
+  isEmpty(value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter some value';
+    }
+    return null;
+  }
+}
+
