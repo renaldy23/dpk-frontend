@@ -218,18 +218,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       } 
       
-      // else {
-      //   // Get email by username
-      //   String emailRes = await userService.getUsername(username);
-      //   // print('Email: ' + emailRes);
-      //   if (!emailRes.isEmptyOrNull) {
-      //     email = emailRes;
-      //   }
-      // }
-
-      // print('Username: ' + username);
-      // print('Email: ' + email);
-
+     
       // Try login to Database
       try {
         String token =
@@ -239,7 +228,9 @@ class _LoginPageState extends State<LoginPage> {
         if (token.isEmptyOrNull) {
           print('Token tidak ditemukan di database...');
           showUnauthorize = true;
+        
         } else {
+
           final userViewModel = context.read(userViewModelProvider.notifier);
 
           // Token

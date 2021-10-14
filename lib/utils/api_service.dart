@@ -9,7 +9,7 @@ class ApiService {
 
   // }
 
-  Future create({
+  Future<int?> create({
     required String token,
     required String endPoint,
     required dynamic data,
@@ -32,6 +32,8 @@ class ApiService {
     } else {
       print('Fail...');
     }
+
+    return response.statusCode;
   }
 
   Future<dynamic> get({
@@ -48,6 +50,33 @@ class ApiService {
     }
 
     return null;
+  }
+
+  Future<int?> update({
+    required String token,
+    required String endPoint,
+    required dynamic data,
+    String param = "",
+  }) async {
+    _dio.options.headers["Authorization"] = "Bearer " + token;
+
+    // print(endPoint);
+    // print(data);
+
+    Response response = await _dio.put(
+      '$endPoint/$param',
+      data: data,
+    );
+
+    print('Status code $response.statusCode');
+
+    if (response.statusCode == 200) {
+      print('Updated');
+    } else {
+      print('Fail...');
+    }
+
+    return response.statusCode;
   }
 
   Future<dynamic> delete({

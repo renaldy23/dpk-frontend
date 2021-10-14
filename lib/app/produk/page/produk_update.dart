@@ -5,31 +5,29 @@ import 'package:dpkfrontend/app/kategori_berat/kategori_berat_service.dart';
 import 'package:dpkfrontend/app/merk/merk_model.dart';
 import 'package:dpkfrontend/app/merk/merk_service.dart';
 import 'package:dpkfrontend/app/produk/data/produk_model.dart';
+import 'package:dpkfrontend/app/produk/widget/produk_widget.dart';
 import 'package:dpkfrontend/app/satuan/satuan_model.dart';
 import 'package:dpkfrontend/app/satuan/satuan_service.dart';
 import 'package:dpkfrontend/app/user/user_service.dart';
-import 'package:dpkfrontend/pub/dropdown_search/dropdown_search.dart';
 import 'package:dpkfrontend/style.dart';
 import 'package:dpkfrontend/utils/api_service.dart';
 import 'package:dpkfrontend/utils/utils.dart';
 import 'package:dpkfrontend/widgets/base/container.dart';
-import 'package:dpkfrontend/widgets/base/padding.dart';
 import 'package:dpkfrontend/widgets/base/responsive.dart';
 import 'package:dpkfrontend/widgets/base/text.dart';
-import 'package:dpkfrontend/widgets/base/textformfield.dart';
-import 'package:flutter/material.dart';
-import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
 import 'package:dpkfrontend/widgets/template/layout/base.dart';
+import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
 import 'package:dpkfrontend/widgets/template/widget/subheader.dart';
+import 'package:flutter/material.dart';
 
-class ProdukCreate extends StatefulWidget {
-  const ProdukCreate({Key? key}) : super(key: key);
+class ProdukUpdate extends StatefulWidget {
+  const ProdukUpdate({Key? key}) : super(key: key);
 
   @override
-  _ProdukCreateState createState() => _ProdukCreateState();
+  _ProdukUpdateState createState() => _ProdukUpdateState();
 }
 
-class _ProdukCreateState extends State<ProdukCreate> {
+class _ProdukUpdateState extends State<ProdukUpdate> {
   // Initialize
   final _formKey = GlobalKey<FormState>();
   final _userService = UserService();
@@ -42,6 +40,7 @@ class _ProdukCreateState extends State<ProdukCreate> {
   final _jumlahStok = TextEditingController();
   final _minimumStok = TextEditingController();
   bool _isRemainStok = false;
+  bool _isLoaded = false;
 
   // Variable
   String _token = '';
@@ -70,11 +69,16 @@ class _ProdukCreateState extends State<ProdukCreate> {
 
   @override
   Widget build(BuildContext context) {
+    try {
+      final args = ModalRoute.of(context)!.settings.arguments as Map;
+      _getData(args);
+    } catch (e) {}
+
     return TemplateBase(
       drawer: TemplateWidgetDrawer(),
       header: TemplateWidgetSubHeader(
-        title: 'Tambah Produk',
-        widget: headerButton(context),
+        title: 'Edit Produk',
+        widget: headerButton(),
       ),
       content: SafeArea(
         child: SingleChildScrollView(
@@ -84,7 +88,7 @@ class _ProdukCreateState extends State<ProdukCreate> {
               width: double.infinity,
               padding: EdgeInsets.only(
                   left: styleDefaultPadding, right: styleDefaultPadding),
-              child: buildContent(context),
+              child: buildContent(),
             ),
           ),
         ),
@@ -93,7 +97,7 @@ class _ProdukCreateState extends State<ProdukCreate> {
   }
 
   // Widgets
-  Widget buildContent(context) => Row(
+  Widget buildContent() => Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -102,7 +106,7 @@ class _ProdukCreateState extends State<ProdukCreate> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!Responsive.isDesktop(context)) photo(),
+                if (!Responsive.isDesktop(context)) fotoProduk(),
                 detailSection(),
                 hargaSection(),
                 stokSection(),
@@ -111,23 +115,14 @@ class _ProdukCreateState extends State<ProdukCreate> {
           ),
           if (Responsive.isDesktop(context))
             SizedBox(width: styleDefaultPadding),
-          if (Responsive.isDesktop(context)) Expanded(child: photo()),
+          if (Responsive.isDesktop(context)) Expanded(child: fotoProduk()),
         ],
       );
 
-  Widget headerButton(context) => Wrap(
+  Widget headerButton() => Wrap(
         // mainAxisAlignment: MainAxisAlignment.end,
         alignment: WrapAlignment.end,
         children: [
-          if (Responsive.isDesktop(context))
-            OutlinedButton(
-              style: styleButtonStyle(context),
-              child: Text('Simpan dan Buat Lagi'),
-              onPressed: () {},
-            ),
-
-          PaddingDesktop(width: styleDefaultPadding),
-
           ElevatedButton.icon(
             style: TextButton.styleFrom(
               padding: EdgeInsets.symmetric(
@@ -151,22 +146,54 @@ class _ProdukCreateState extends State<ProdukCreate> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(child: namaProduk()),
-              Expanded(child: kodeProduk()),
+              Expanded(child: namaProduk(_namaProduk)),
+              Expanded(child: kodeProduk(_kodeProduk)),
             ],
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(child: kategori()),
-              Expanded(child: kategoriBerat()),
+              Expanded(
+                child: DropDownSearchUtils(
+                  items: _listKategoriModel,
+                  labelText: 'Kategori',
+                  hintText: 'Pilih kategori',
+                  onChanged: (val) => _produkModel.kategoriId = val.id,
+                  selectedItem: _produkModel.namaKategori,
+                ),
+              ),
+              Expanded(
+                child: DropDownSearchUtils(
+                  items: _listKategoriBeratModel,
+                  labelText: 'Kategori Berat',
+                  hintText: 'Pilih kategori berat',
+                  onChanged: (val) => _produkModel.kategoriBeratId = val.id,
+                  selectedItem: _produkModel.namaKategoriBerat,
+                ),
+              ),
             ],
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(child: satuan()),
-              Expanded(child: merk()),
+              Expanded(
+                child: DropDownSearchUtils(
+                  items: _listSatuanModel,
+                  labelText: 'Satuan unit',
+                  hintText: 'Pilih satuan unit',
+                  onChanged: (val) => _produkModel.satuanId = val.id,
+                  selectedItem: _produkModel.namaSatuan,
+                ),
+              ),
+              Expanded(
+                child: DropDownSearchUtils(
+                  items: _listMerkModel,
+                  labelText: 'Merk',
+                  hintText: 'Pilih merk',
+                  onChanged: (val) => _produkModel.merkId = val.id,
+                  selectedItem: _produkModel.namaMerk,
+                ),
+              ),
             ],
           ),
         ],
@@ -180,8 +207,8 @@ class _ProdukCreateState extends State<ProdukCreate> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(child: hargaJual()),
-                Expanded(child: hargaBeli()),
+                Expanded(child: hargaJual(_hargaJual)),
+                Expanded(child: hargaBeli(_hargaBeli)),
               ],
             ),
           ],
@@ -196,114 +223,37 @@ class _ProdukCreateState extends State<ProdukCreate> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(child: jumlahStok()),
-                Expanded(child: minimumStok()),
+                Expanded(child: jumlahStok(_jumlahStok)),
+                Expanded(child: minimumStok(_minimumStok)),
               ],
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // Expanded(child: satuan()),
-                Expanded(child: isRemainStok()),
+                // Expanded(
+                //   child: DropDownSearchUtils(
+                //     items: _listSatuanModel,
+                //     labelText: 'Satuan Unit',
+                //     hintText: 'Pilih satuan unit',
+                //     onChanged: (val) => _produkModel.satuanId = val.id,
+                //   ),
+                // ),
+                Expanded(
+                  child: CheckboxListTileUtils(
+                    title: Text(
+                        "Kirim notifikasi saat stok mencapai batas minimum"),
+                    value: _isRemainStok,
+                    onChanged: (val) => setState(() {
+                      _isRemainStok = val!;
+                    }),
+                  ),
+                ),
               ],
             ),
           ],
         ),
       );
-
-  // Controls
-  Widget namaProduk() => TextFormFieldCustom(
-        controller: _namaProduk,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Nama produk',
-        hintText: 'Masukkan nama produk',
-        validator: true,
-      );
-
-  Widget kodeProduk() => TextFormFieldCustom(
-        controller: _kodeProduk,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Kode produk (SKU)',
-        hintText: 'Masukkan kode produk (SKU)',
-        validator: true,
-      );
-
-  Widget kategori() => DropDownSearchCustom(
-        items: _listKategoriModel,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Kategori',
-        hintText: 'Pilih kategori',
-        onChanged: (val) => _produkModel.kategoriId = val.id,
-      );
-  
-  Widget kategoriBerat() => DropDownSearchCustom(
-        items: _listKategoriBeratModel,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Kategori Berat',
-        hintText: 'Pilih kategori Berat',
-        onChanged: (val) => _produkModel.kategoriBeratId = val.id,
-      );
-
-  Widget merk() => DropDownSearchCustom(
-        items: _listMerkModel,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Merk',
-        hintText: 'Pilih merk',
-        onChanged: (val) => _produkModel.merkId = val.id,
-      );
-
-  Widget hargaJual() => TextFormFieldCustom(
-        controller: _hargaJual,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Harga Jual',
-        hintText: 'Masukkan harga jual',
-        validator: true,
-      );
-
-  Widget hargaBeli() => TextFormFieldCustom(
-        controller: _hargaBeli,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Harga Beli',
-        hintText: 'Masukkan harga beli',
-      );
-
-  Widget jumlahStok() => TextFormFieldCustom(
-        controller: _jumlahStok,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Jumlah Stok',
-        hintText: 'Masukkan jumlah stok',
-      );
-
-  Widget minimumStok() => TextFormFieldCustom(
-        controller: _minimumStok,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Minimum Stok',
-        hintText: 'Masukkan minimum stok',
-      );
-
-  Widget satuan() => DropDownSearchCustom(
-        items: _listSatuanModel,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Satuan Unit',
-        hintText: 'Pilih satuan unit',
-        onChanged: (val) => _produkModel.satuanId = val.id,
-      );
-
-  Widget isRemainStok() => SizedBox(
-        // width: width * 2,
-        child: CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: Text("Kirim notifikasi saat stok mencapai batas minimum"),
-          value: _isRemainStok,
-          onChanged: (val) => setState(() {
-            _isRemainStok = val!;
-          }),
-        ),
-      );
-
-  Widget photo() =>
-      ContainerBoxSecondary(child: Image.asset('images/empty-image.jpg'));
 
   // Function
   Future _initState() async {
@@ -317,9 +267,8 @@ class _ProdukCreateState extends State<ProdukCreate> {
     await _kategoriService
         .getListData(token: _token)
         .then((data) => data.forEach((val) => _listKategoriModel.add(val)));
-    await _kategoriBeratService
-        .getListData(token: _token)
-        .then((data) => data.forEach((val) => _listKategoriBeratModel.add(val)));
+    await _kategoriBeratService.getListData(token: _token).then(
+        (data) => data.forEach((val) => _listKategoriBeratModel.add(val)));
 
     await _merkService
         .getListData(token: _token)
@@ -327,6 +276,22 @@ class _ProdukCreateState extends State<ProdukCreate> {
     await _satuanService
         .getListData(token: _token)
         .then((data) => data.forEach((val) => _listSatuanModel.add(val)));
+  }
+
+  void _getData(args) {
+    if (!_isLoaded) {
+      _produkModel = args['data'];
+      _namaProduk.text = _produkModel.namaProduk!;
+      _kodeProduk.text = _produkModel.kodeProduk!;
+      _hargaJual.text = _produkModel.hargaJual!.toString();
+      _hargaBeli.text = _produkModel.hargaBeli!.toString();
+
+      _jumlahStok.text = _produkModel.jumlahStok!.toString();
+      _minimumStok.text = _produkModel.minimumStok!.toString();
+
+      _isRemainStok = _produkModel.isRemainStok!;
+      _isLoaded = true;
+    }
   }
 
   Future _save() async {
@@ -353,13 +318,13 @@ class _ProdukCreateState extends State<ProdukCreate> {
         ..createdById = user['id'] // Default admin
         ..createdAt = DateTime.now().toIso8601String();
 
-      // print(_produkModel.toJson());
+      print(_produkModel.toJson());
 
       final api = ApiService();
-      int? response = await api.create(
-          token: _token, endPoint: 'produk', data: _produkModel.toJson());
+      int? response = await api.update(
+          token: _token, endPoint: 'produk', param: _produkModel.id.toString(), data: _produkModel.toJson());
 
-      if (response == 201) Navigator.pop(context, true);
+      if (response == 200) Navigator.pop(context, true);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -367,4 +332,6 @@ class _ProdukCreateState extends State<ProdukCreate> {
       );
     }
   }
+
+  // EOF
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,10 +12,11 @@ class UserService {
   final Dio _dio = Dio(configDioBaseOptions());
 
   // Get token
-  Future<String> getToken(
-      {required String username, required String password}) async {
+  Future<String> getToken({
+    required String username,
+    required String password,
+  }) async {
     String token = "";
-
     FormData formData =
         FormData.fromMap({'username': username, 'password': password});
 
@@ -22,16 +25,11 @@ class UserService {
           .post(
             "users/token",
             data: formData,
-            // onSendProgress: (int sent, int total) {
-            //   print('$sent $total');
-            // },
           )
           .catchError((e) => throw Exception(e.toString()));
-      // print("Response: ${res.data}");
       token = res.data["access_token"];
-      // print(token);
     } catch (e) {
-      print('getToken: ' + e.toString());
+      print('ERROR getToken: ' + e.toString());
     }
 
     return token;
@@ -40,6 +38,12 @@ class UserService {
   String getTokenString(BuildContext context) {
     final userViewModel = context.read(userViewModelProvider.notifier);
     return userViewModel.getToken;
+  }
+
+ Map<String, dynamic> getCurrentUser(BuildContext context) {
+    final userViewModel = context.read(userViewModelProvider.notifier);
+    String user =  userViewModel.getUser;
+    return json.decode(user);
   }
 
   //

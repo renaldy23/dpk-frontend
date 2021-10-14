@@ -14,6 +14,7 @@ class DropDownSearchCustom<T> extends StatelessWidget {
     this.itemAsString,
     this.validator = true,
     this.padding,
+    this.selectedItem,
   }) : super(key: key);
 
   final double? width;
@@ -23,6 +24,7 @@ class DropDownSearchCustom<T> extends StatelessWidget {
   final DropdownSearchItemAsString<T>? itemAsString;
   final bool validator;
   final EdgeInsetsGeometry? padding;
+  final T? selectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +33,12 @@ class DropDownSearchCustom<T> extends StatelessWidget {
       child: SizedBox(
         width: width != null ? width! : double.infinity,
         child: DropdownSearch<T>(
-          // maxHeight: 100,/ 
-          validator: (v) => validator ? v == null ? "required field" : null : null,
+          // maxHeight: 100,/
+          validator: (v) => validator
+              ? v == null
+                  ? "required field"
+                  : null
+              : null,
           dropdownSearchDecoration: InputDecoration(
             hintText: hintText,
             labelText: labelText,
@@ -42,6 +48,7 @@ class DropDownSearchCustom<T> extends StatelessWidget {
           items: items,
           itemAsString: itemAsString,
           onChanged: (val) => onChanged(val),
+          selectedItem: selectedItem,
         ),
       ),
     );

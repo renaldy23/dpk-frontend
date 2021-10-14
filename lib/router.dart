@@ -1,6 +1,7 @@
 import 'package:dpkfrontend/app/home/page/home.dart';
 import 'package:dpkfrontend/app/produk/page/produk_create.dart';
 import 'package:dpkfrontend/app/produk/page/produk_list.dart';
+import 'package:dpkfrontend/app/produk/page/produk_update.dart';
 import 'package:dpkfrontend/app/supplier/supplier_page.dart';
 import 'package:dpkfrontend/widgets/page/page_not_found.dart';
 import 'package:dpkfrontend/widgets/template/layout/dashboard.dart';
@@ -29,6 +30,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
               ));
     case '/produk-create':
       return MaterialPageRoute(builder: (context) => ProdukCreate());
+    case '/produk-update':
+      return MaterialPageRoute(
+        builder: (context) => ProdukUpdate(),
+        settings: routeSettings,
+      );
 
     // Master
     // case '/kategori':
@@ -45,3 +51,8 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       );
   }
 }
+
+// class IdArguments {
+//   final int id;
+//   IdArguments(this.id);
+// }

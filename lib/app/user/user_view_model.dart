@@ -18,10 +18,7 @@ class UserViewModel extends StateNotifier<bool> {
 
   void setUser(value) {
     sharedPrefService.setString(_key, json.encode(value));
-    // state = json.encode(value);
   }
-
-  // String get getUser => json.decode(state);
   String get getUser => sharedPrefService.getString(_key);
 
   Map<String, dynamic> mapUser() =>
@@ -51,13 +48,3 @@ class UserViewModel extends StateNotifier<bool> {
       sharedPrefService.setString(_key + "role", value);
   String get getRole => sharedPrefService.getString(_key + "role");
 }
-
-// // Auth Change
-// final userAuthChangesProvider =
-//     StateNotifierProvider((ref) => UserAuthChanges());
-
-// class UserAuthChanges extends StateNotifier<bool> {
-//   UserAuthChanges() : super(false);
-
-//   bool authChanges(bool value) => state = value;
-// }
