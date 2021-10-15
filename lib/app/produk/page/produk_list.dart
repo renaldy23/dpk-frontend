@@ -70,7 +70,7 @@ class _ProdukListState extends State<ProdukList> {
           if (snapshot.hasData) {
             List<ProdukModel> data = snapshot.data!;
 
-            print(data[0].toJson());
+            print(data);
 
             return SizedBox(
               width: double.infinity,
@@ -186,8 +186,8 @@ class _ProdukListState extends State<ProdukList> {
         // print(item['data'].id);
         await Navigator.pushNamed(context, '/produk-update',
             arguments: {"data": item['data']}).then((isRefresh) {
-              if (isRefresh == true) setState(() {}); 
-            });
+          if (isRefresh == true) setState(() {});
+        });
         break;
       case 'delete':
         await _showDeleteDialog(item['data'].namaProduk, item['data'].id);
