@@ -1,5 +1,5 @@
-// import 'package:dpkfrontend/app/home/side_menu/side_menu.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
+// import '/app/home/side_menu/side_menu.dart';
+import '/widgets/base/responsive.dart';
 import 'package:flutter/material.dart';
 
 class SupplierPage extends StatefulWidget {

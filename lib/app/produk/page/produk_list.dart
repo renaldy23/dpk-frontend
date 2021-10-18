@@ -1,11 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
-import 'package:dpkfrontend/utils/api_service.dart';
-import 'package:dpkfrontend/app/produk/data/produk_model.dart';
-import 'package:dpkfrontend/app/produk/data/produk_service.dart';
-import 'package:dpkfrontend/app/user/user_service.dart';
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/utils/utils.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
+import '/utils/api_service.dart';
+import '/app/produk/data/produk_model.dart';
+import '/app/produk/data/produk_service.dart';
+import '/app/user/user_service.dart';
+import '/style.dart';
+import '/utils/utils.dart';
+import '/widgets/base/responsive.dart';
 import 'package:flutter/material.dart';
 
 class ProdukList extends StatefulWidget {
@@ -59,7 +59,10 @@ class _ProdukListState extends State<ProdukList> {
             ),
             icon: Icon(Icons.add),
             label: Text("Tambah"),
-            onPressed: () => Navigator.pushNamed(context, '/produk-create'),
+            onPressed: () async =>
+                Navigator.pushNamed(context, '/produk-create').then((value) {
+              if (value == true) setState(() {});
+            }),
           ),
         ],
       );
@@ -70,7 +73,7 @@ class _ProdukListState extends State<ProdukList> {
           if (snapshot.hasData) {
             List<ProdukModel> data = snapshot.data!;
 
-            print(data[0].toJson());
+            // print(data[0].toJson());
 
             return SizedBox(
               width: double.infinity,
@@ -186,8 +189,8 @@ class _ProdukListState extends State<ProdukList> {
         // print(item['data'].id);
         await Navigator.pushNamed(context, '/produk-update',
             arguments: {"data": item['data']}).then((isRefresh) {
-              if (isRefresh == true) setState(() {}); 
-            });
+          if (isRefresh == true) setState(() {});
+        });
         break;
       case 'delete':
         await _showDeleteDialog(item['data'].namaProduk, item['data'].id);

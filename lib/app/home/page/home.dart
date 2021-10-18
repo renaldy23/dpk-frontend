@@ -1,21 +1,20 @@
-
-import 'package:dpkfrontend/widgets/template/widget/account.dart';
-import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
+import 'package:dpkfrontend/widgets/template/layout/base.dart';
+import 'package:dpkfrontend/widgets/template/widget/header.dart';
+import 'package:dpkfrontend/widgets/template/widget/search.dart';
 import 'package:flutter/material.dart';
+import '/widgets/template/widget/account.dart';
+import '/widgets/template/widget/drawer.dart';
 
-import '../../../widgets/template/layout/base.dart';
-import '../../../widgets/template/widget/header.dart';
-import '../../../widgets/template/widget/search.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TemplateBase(
       drawer: TemplateWidgetDrawer(),
       header: TemplateWidgetHeader(
-        title: 'Base',
+        title: 'Dashboard',
         searchWidget: TemplateWidgetSearch(),
         accountWidget: TemplateWidgetAccount(),
       ),
@@ -25,7 +24,7 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeContent extends StatefulWidget {
-  const HomeContent({ Key? key }) : super(key: key);
+  const HomeContent({Key? key}) : super(key: key);
 
   @override
   _HomeContentState createState() => _HomeContentState();
@@ -34,8 +33,6 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }

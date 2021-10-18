@@ -40,10 +40,10 @@ class UserService {
     return userViewModel.getToken;
   }
 
- Map<String, dynamic> getCurrentUser(BuildContext context) {
+  Map<String, dynamic> getCurrentUser(BuildContext context) {
     final userViewModel = context.read(userViewModelProvider.notifier);
-    String user =  userViewModel.getUser;
-    return json.decode(user);
+    String user = userViewModel.getUser;
+    return user.isNotEmpty ? json.decode(user) : {};
   }
 
   //

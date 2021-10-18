@@ -1,6 +1,6 @@
-// import 'package:dpkfrontend/app/user/user_view_model.dart';
-// import 'package:dpkfrontend/config.dart';
-// import 'package:dpkfrontend/utils/page/message_page.dart';
+// import '/app/user/user_view_model.dart';
+// import '/config.dart';
+// import '/utils/page/message_page.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:nb_utils/nb_utils.dart';

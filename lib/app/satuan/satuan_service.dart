@@ -14,7 +14,9 @@ class SatuanService {
     int limit = 10,
   }) async {
     Response response = await _apiService.get(
-        token: token, endPoint: '$_endPoint', param: '?skip=$skip&limit=$limit');
+        token: token,
+        endPoint: '$_endPoint',
+        param: '?skip=$skip&limit=$limit');
 
     if (response.data != null) {
       return SatuanModel.fromJsonList(response.data);

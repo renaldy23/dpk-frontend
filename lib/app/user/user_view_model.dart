@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'package:dpkfrontend/pub/shared_preferences/shared_preferences.dart';
+import '/pub/shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 final userViewModelProvider = StateNotifierProvider<UserViewModel, bool>((ref) {
   final sharedPrefService = ref.watch(sharedPrefProvider);
@@ -19,6 +18,7 @@ class UserViewModel extends StateNotifier<bool> {
   void setUser(value) {
     sharedPrefService.setString(_key, json.encode(value));
   }
+
   String get getUser => sharedPrefService.getString(_key);
 
   Map<String, dynamic> mapUser() =>

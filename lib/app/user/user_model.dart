@@ -13,26 +13,27 @@
 */
 
 class UserModel {
-  late int id;
-  late String username;
-  late String password;
-  late int role;
-  late String phone;
-  late String email;
-  late bool isActive;
-  late String fullName;
-  late String createdAt;
+  int? id;
+  String? username;
+  String? password;
+  int? role;
+  String? phone;
+  String? email;
+  bool? isActive;
+  String? fullName;
+  String? createdAt;
 
-  UserModel(
-      {this.id=0,
-      this.username='',
-      this.password='',
-      this.role=0,
-      this.phone='',
-      this.email='',
-      this.isActive=true,
-      this.fullName='',
-      this.createdAt=''});
+  UserModel({
+    this.id,
+    this.username,
+    this.password,
+    this.role,
+    this.phone,
+    this.email,
+    this.isActive,
+    this.fullName,
+    this.createdAt,
+  });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,7 +48,7 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['username'] = this.username;
     data['password'] = this.password;

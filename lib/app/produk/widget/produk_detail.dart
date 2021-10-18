@@ -1,4 +1,4 @@
-import 'package:dpkfrontend/style.dart';
+import '/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -103,13 +103,14 @@ class StorageInfoCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextButton(onPressed: () => Navigator.pushNamed(context, page), child: 
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),),
-
+                  TextButton(
+                    onPressed: () => Navigator.pushNamed(context, page),
+                    child: Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   Text(
                     "$numOfFiles Files",
                     style: Theme.of(context)

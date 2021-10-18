@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/scheduler.dart';
@@ -30,11 +29,13 @@ class _LandingPageState extends State<LandingPage> {
     final userProvider = context.read(userViewModelProvider.notifier);
     if (!userProvider.getAuth) {
       SchedulerBinding.instance!.addPostFrameCallback((_) {
-        Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
       });
     } else {
       SchedulerBinding.instance!.addPostFrameCallback((_) {
-        Navigator.of(context).pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
       });
     }
   }

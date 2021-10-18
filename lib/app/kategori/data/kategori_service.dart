@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
+import '/utils/api_service.dart';
+import 'kategori_model.dart';
 
-import '../../utils/api_service.dart';
-import '/app/kategori_berat/kategori_berat_model.dart';
-
-class KategoriBeratService {
+class KategoriService {
   final _apiService = ApiService();
 
-  final String _endPoint = 'kategori-berat';
+  final String _endPoint = 'kategori';
 
-  Future<List<KategoriBeratModel>> getListData({
+  // List
+  Future<List<KategoriModel>> getListData({
     required String token,
     // required String endPoint,
     int skip = 0,
@@ -20,9 +20,11 @@ class KategoriBeratService {
         param: '?skip=$skip&limit=$limit');
 
     if (response.data != null) {
-      return KategoriBeratModel.fromJsonList(response.data);
+      return KategoriModel.fromJsonList(response.data);
     }
 
     return [];
   }
+
+  
 }
