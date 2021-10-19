@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:dpkfrontend/pub/global_configuration/global_configuration.dart';
-
+import '/pub/global_configuration/global_configuration.dart';
 
 class Config {
   final _cfg = GlobalConfig();
@@ -15,14 +14,13 @@ class Config {
   // API
   String get apiBaseUrl {
     String baseUrl = "";
-    if (isDev) 
-      if (isEmulator)
-        baseUrl = _cfg.get("apiBaseUrlEmulator");
-      else 
-        baseUrl = _cfg.get("apiBaseUrlDev");
-    else 
+    if (isDev) if (isEmulator)
+      baseUrl = _cfg.get("apiBaseUrlEmulator");
+    else
+      baseUrl = _cfg.get("apiBaseUrlDev");
+    else
       baseUrl = _cfg.get("apiBaseUrlProd");
-    
+
     return baseUrl;
   }
 

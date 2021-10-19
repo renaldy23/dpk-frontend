@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       key: _globalKey,
       backgroundColor: styleAppBackground,
       body: _buildBody(),
-      persistentFooterButtons: _buildFooterButtons(),
+      // persistentFooterButtons: _buildFooterButtons(),
     );
   }
 
@@ -98,12 +98,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildInputUsername() {
     return TextFormField(
+      style: TextStyle(color: Colors.black),
       controller: _usernameController,
       cursorColor: styleTextSecondaryColor.withOpacity(0.2),
       cursorWidth: 1,
       autocorrect: true,
       autofocus: false,
       decoration: InputDecoration(
+        // fillColor: Colors.black,
         hintText: 'Email atau username',
         hintStyle:
             secondaryTextStyle(color: styleTextSecondaryColor.withOpacity(0.6)),
@@ -129,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         Flexible(
           child: TextFormField(
+              style: TextStyle(color: Colors.black),
               controller: _passwordController,
               textInputAction: TextInputAction.go,
               obscureText: true,
@@ -153,46 +156,48 @@ class _LoginPageState extends State<LoginPage> {
                 }
                 return null;
               }),
-              
         ),
-        GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Text('Lupa?',
-                style: boldTextStyle(size: 14, color: stylePrimaryColor)),
-          ),
-          onTap: () {
-            // SDForgotPwdScreen().launch(context);
-          },
-        ),
+
+        // Lupa password
+        // GestureDetector(
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 16),
+        //     child: Text('Lupa?',
+        //         style: boldTextStyle(size: 14, color: stylePrimaryColor)),
+        //   ),
+        //   onTap: () {
+        //   },
+        // ),
+
+
       ],
     );
   }
 
-  List<Widget> _buildFooterButtons() {
-    return <Widget>[
-      Container(
-        height: 40,
-        padding: EdgeInsets.only(left: 15, right: 15),
-        width: MediaQuery.of(context).copyWith().size.width,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Bottom Button
-            Text('Tidak punya akun?', style: secondaryTextStyle()),
-            TextButton(
-              onPressed: () {
-                // SignUpPage().launch(context);
-              },
-              child: Text('DAFTAR',
-                  style: boldTextStyle(size: 14, color: stylePrimaryColor)),
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
+  // List<Widget> _buildFooterButtons() {
+  //   return <Widget>[
+  //     Container(
+  //       height: 40,
+  //       padding: EdgeInsets.only(left: 15, right: 15),
+  //       width: MediaQuery.of(context).copyWith().size.width,
+  //       child: Row(
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           // Bottom Button
+  //           Text('Tidak punya akun?', style: secondaryTextStyle()),
+  //           TextButton(
+  //             onPressed: () {
+  //               // SignUpPage().launch(context);
+  //             },
+  //             child: Text('DAFTAR',
+  //                 style: boldTextStyle(size: 14, color: stylePrimaryColor)),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   ];
+  // }
 
   // Function
   Future _login() async {
@@ -216,9 +221,8 @@ class _LoginPageState extends State<LoginPage> {
         if (!usernameRes.isEmptyOrNull) {
           username = usernameRes;
         }
-      } 
-      
-     
+      }
+
       // Try login to Database
       try {
         String token =
@@ -228,14 +232,12 @@ class _LoginPageState extends State<LoginPage> {
         if (token.isEmptyOrNull) {
           print('Token tidak ditemukan di database...');
           showUnauthorize = true;
-        
         } else {
-
           final userViewModel = context.read(userViewModelProvider.notifier);
 
           // Token
           userViewModel.setToken(token);
-          
+
           // Get current user
           UserModel user = await userService.getUserMe(token);
           userViewModel.setUser(user);
@@ -265,5 +267,4 @@ class _LoginPageState extends State<LoginPage> {
       // IF form.validate
     }
   }
-
 }

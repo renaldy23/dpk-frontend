@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 import '../../../utils/api_service.dart';
 import '/app/produk/data/produk_model.dart';
 
@@ -15,7 +14,9 @@ class ProdukService {
     int limit = 10,
   }) async {
     Response response = await _apiService.get(
-        token: token, endPoint: '$_endPoint', param: '?skip=$skip&limit=$limit');
+        token: token,
+        endPoint: '$_endPoint',
+        param: '?skip=$skip&limit=$limit');
 
     if (response.data != null) {
       return ProdukModel.fromJsonList(response.data);
@@ -24,4 +25,3 @@ class ProdukService {
     return [];
   }
 }
-

@@ -1,4 +1,4 @@
-import 'package:dpkfrontend/style.dart';
+import '/style.dart';
 import 'package:flutter/material.dart';
 
 class ContainerBox extends StatelessWidget {
@@ -62,7 +62,7 @@ class ContainerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(styleDefaultPadding/2),
+      padding: EdgeInsets.all(styleDefaultPadding / 2),
       color: styleSecondaryColor,
       child: child,
     );

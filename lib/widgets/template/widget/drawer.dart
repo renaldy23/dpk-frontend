@@ -29,7 +29,7 @@ class TemplateWidgetDrawer extends StatelessWidget {
           DrawerListTile(
             title: "Pesan Barang",
             svgSrc: "assets/icons/truck.svg",
-            press: () {},
+             press: () => Navigator.pushNamed(context, '/kategori'),
           ),
           DrawerListTile(
             title: "Transaksi",

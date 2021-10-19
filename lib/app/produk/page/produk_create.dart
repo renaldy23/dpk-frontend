@@ -1,26 +1,27 @@
-import 'package:dpkfrontend/app/kategori/kategori_model.dart';
-import 'package:dpkfrontend/app/kategori/kategori_service.dart';
-import 'package:dpkfrontend/app/kategori_berat/kategori_berat_model.dart';
-import 'package:dpkfrontend/app/kategori_berat/kategori_berat_service.dart';
-import 'package:dpkfrontend/app/merk/merk_model.dart';
-import 'package:dpkfrontend/app/merk/merk_service.dart';
-import 'package:dpkfrontend/app/produk/data/produk_model.dart';
-import 'package:dpkfrontend/app/satuan/satuan_model.dart';
-import 'package:dpkfrontend/app/satuan/satuan_service.dart';
-import 'package:dpkfrontend/app/user/user_service.dart';
-import 'package:dpkfrontend/pub/dropdown_search/dropdown_search.dart';
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/utils/api_service.dart';
-import 'package:dpkfrontend/utils/utils.dart';
-import 'package:dpkfrontend/widgets/base/container.dart';
-import 'package:dpkfrontend/widgets/base/padding.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
-import 'package:dpkfrontend/widgets/base/text.dart';
-import 'package:dpkfrontend/widgets/base/textformfield.dart';
+import '/utils/api_model.dart';
+import '/app/kategori/data/kategori_model.dart';
+import '/app/kategori/data/kategori_service.dart';
+import '/app/kategori_berat/kategori_berat_model.dart';
+import '/app/kategori_berat/kategori_berat_service.dart';
+import '/app/merk/merk_model.dart';
+import '/app/merk/merk_service.dart';
+import '/app/produk/data/produk_model.dart';
+import '/app/satuan/satuan_model.dart';
+import '/app/satuan/satuan_service.dart';
+import '/app/user/user_service.dart';
+import '/pub/dropdown_search/dropdown_search.dart';
+import '/style.dart';
+import '/utils/api_service.dart';
+import '/utils/utils.dart';
+import '/widgets/base/container.dart';
+import '/widgets/base/padding.dart';
+import '/widgets/base/responsive.dart';
+import '/widgets/base/text.dart';
+import '/widgets/base/textformfield.dart';
 import 'package:flutter/material.dart';
-import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
-import 'package:dpkfrontend/widgets/template/layout/base.dart';
-import 'package:dpkfrontend/widgets/template/widget/subheader.dart';
+import '/widgets/template/widget/drawer.dart';
+import '/widgets/template/layout/base.dart';
+import '/widgets/template/widget/subheader.dart';
 
 class ProdukCreate extends StatefulWidget {
   const ProdukCreate({Key? key}) : super(key: key);
@@ -116,7 +117,6 @@ class _ProdukCreateState extends State<ProdukCreate> {
       );
 
   Widget headerButton(context) => Wrap(
-        // mainAxisAlignment: MainAxisAlignment.end,
         alignment: WrapAlignment.end,
         children: [
           if (Responsive.isDesktop(context))
@@ -236,7 +236,7 @@ class _ProdukCreateState extends State<ProdukCreate> {
         hintText: 'Pilih kategori',
         onChanged: (val) => _produkModel.kategoriId = val.id,
       );
-  
+
   Widget kategoriBerat() => DropDownSearchCustom(
         items: _listKategoriBeratModel,
         padding: EdgeInsets.all(styleDefaultPadding),
@@ -317,9 +317,8 @@ class _ProdukCreateState extends State<ProdukCreate> {
     await _kategoriService
         .getListData(token: _token)
         .then((data) => data.forEach((val) => _listKategoriModel.add(val)));
-    await _kategoriBeratService
-        .getListData(token: _token)
-        .then((data) => data.forEach((val) => _listKategoriBeratModel.add(val)));
+    await _kategoriBeratService.getListData(token: _token).then(
+        (data) => data.forEach((val) => _listKategoriBeratModel.add(val)));
 
     await _merkService
         .getListData(token: _token)
@@ -343,23 +342,26 @@ class _ProdukCreateState extends State<ProdukCreate> {
         ..isRemainStok = _isRemainStok
         ..hargaJual = double.tryParse(isNumericOrZero(_hargaJual.text))
         ..hargaBeli = double.tryParse(isNumericOrZero(_hargaBeli.text))
-        // TODO: Add in form optional
         ..beratProduk = 0
         ..ukuran = '' // Besar, Kecil
         ..isSpecial = false
         ..keterangan = ''
         ..isFavorite = false
         ..outletId = 1 // Default 1 = Pusat
+        ..foto = ''
         ..createdById = user['id'] // Default admin
         ..createdAt = DateTime.now().toIso8601String();
 
       // print(_produkModel.toJson());
 
+      // var data = _produkModel;
+      // data.
+
       final api = ApiService();
-      int? response = await api.create(
+      ApiResponseModel response = await api.create(
           token: _token, endPoint: 'produk', data: _produkModel.toJson());
 
-      if (response == 201) Navigator.pop(context, true);
+      if (response.statusCode == 201) Navigator.pop(context, true);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -367,4 +369,6 @@ class _ProdukCreateState extends State<ProdukCreate> {
       );
     }
   }
+
+  // EOF
 }

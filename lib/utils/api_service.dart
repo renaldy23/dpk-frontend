@@ -1,39 +1,38 @@
 import 'package:dio/dio.dart';
-
+import '/utils/api_model.dart';
 import '/config.dart';
 
 class ApiService {
   final Dio _dio = Dio(configDioBaseOptions());
 
-  // String getToken() {
-
-  // }
-
-  Future<int?> create({
+  Future<ApiResponseModel> create({
     required String token,
     required String endPoint,
     required dynamic data,
     String param = "",
   }) async {
+    // Init
+    ApiResponseModel result = ApiResponseModel();
+    Response response;
+
     _dio.options.headers["Authorization"] = "Bearer " + token;
 
-    // print(endPoint);
-    // print(data);
-
-    Response response = await _dio.post(
-      '$endPoint/$param',
-      data: data,
-    );
-
-    print('Status code $response.statusCode');
-
-    if (response.statusCode == 201) {
-      print('Created');
-    } else {
-      print('Fail...');
+    try {
+      response = await _dio.post(
+        '$endPoint/$param',
+        data: data,
+      );
+      result
+        ..statusCode = response.statusCode
+        ..message = 'success'
+        ..body = response.data.toString();
+    } on DioError catch (e) {
+      String errData = e.response!.data['detail'][0]['msg'];
+      final startIndex = errData.indexOf("DETAIL");
+      throw Exception(errData.substring(startIndex + 8));
     }
 
-    return response.statusCode;
+    return result;
   }
 
   Future<dynamic> get({
@@ -52,50 +51,59 @@ class ApiService {
     return null;
   }
 
-  Future<int?> update({
+  Future<ApiResponseModel> update({
     required String token,
     required String endPoint,
     required dynamic data,
     String param = "",
   }) async {
+    // Init
+    ApiResponseModel result = ApiResponseModel();
+    Response response;
     _dio.options.headers["Authorization"] = "Bearer " + token;
 
-    // print(endPoint);
-    // print(data);
-
-    Response response = await _dio.put(
-      '$endPoint/$param',
-      data: data,
-    );
-
-    print('Status code $response.statusCode');
-
-    if (response.statusCode == 200) {
-      print('Updated');
-    } else {
-      print('Fail...');
+    try {
+      response = await _dio.put(
+        '$endPoint/$param',
+        data: data,
+      );
+      result
+        ..statusCode = response.statusCode
+        ..message = 'success'
+        ..body = response.data.toString();
+    } on DioError catch (e) {
+      String errData = e.response!.data['detail'][0]['msg'];
+      final startIndex = errData.indexOf("DETAIL");
+      throw Exception(errData.substring(startIndex + 8));
     }
 
-    return response.statusCode;
+    return result;
   }
 
-  Future<dynamic> delete({
+  Future<ApiResponseModel> delete({
     required String token,
     required String endPoint,
     String param = "",
   }) async {
+
+    // Init
+    ApiResponseModel result = ApiResponseModel();
+    Response response;
     _dio.options.headers["Authorization"] = "Bearer " + token;
 
-    Response response = await _dio.delete('$endPoint/$param');
-
-    if (response.data != null) {
-      var data = response.data;
-      if (data['code'] != 200) {
-        print('Error');
-        print(data);
-      }
+    try {
+      response = await _dio.delete('$endPoint/$param');
+      result
+        ..statusCode = response.statusCode
+        ..message = 'success'
+        ..body = response.data.toString();
+    } on DioError catch (e) {
+      String errData = e.response!.data['detail'][0]['msg'];
+      final startIndex = errData.indexOf("DETAIL");
+      throw Exception(errData.substring(startIndex + 8));
     }
 
-    return null;
+    return result;
+  
   }
 }

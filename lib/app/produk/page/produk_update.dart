@@ -1,23 +1,22 @@
-import 'package:dpkfrontend/app/kategori/kategori_model.dart';
-import 'package:dpkfrontend/app/kategori/kategori_service.dart';
-import 'package:dpkfrontend/app/kategori_berat/kategori_berat_model.dart';
-import 'package:dpkfrontend/app/kategori_berat/kategori_berat_service.dart';
-import 'package:dpkfrontend/app/merk/merk_model.dart';
-import 'package:dpkfrontend/app/merk/merk_service.dart';
-import 'package:dpkfrontend/app/produk/data/produk_model.dart';
-import 'package:dpkfrontend/app/produk/widget/produk_widget.dart';
-import 'package:dpkfrontend/app/satuan/satuan_model.dart';
-import 'package:dpkfrontend/app/satuan/satuan_service.dart';
-import 'package:dpkfrontend/app/user/user_service.dart';
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/utils/api_service.dart';
-import 'package:dpkfrontend/utils/utils.dart';
-import 'package:dpkfrontend/widgets/base/container.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
-import 'package:dpkfrontend/widgets/base/text.dart';
-import 'package:dpkfrontend/widgets/template/layout/base.dart';
-import 'package:dpkfrontend/widgets/template/widget/drawer.dart';
-import 'package:dpkfrontend/widgets/template/widget/subheader.dart';
+import '/app/kategori/data/kategori_model.dart';
+import '/app/kategori/data/kategori_service.dart';
+import '/app/kategori_berat/kategori_berat_model.dart';
+import '/app/kategori_berat/kategori_berat_service.dart';
+import '/app/merk/merk_model.dart';
+import '/app/merk/merk_service.dart';
+import '/app/produk/data/produk_model.dart';
+import '/app/produk/widget/produk_widget.dart';
+import '/app/satuan/satuan_model.dart';
+import '/app/satuan/satuan_service.dart';
+import '/app/user/user_service.dart';
+import '/style.dart';
+import '/utils/utils.dart';
+import '/widgets/base/container.dart';
+import '/widgets/base/responsive.dart';
+import '/widgets/base/text.dart';
+import '/widgets/template/layout/base.dart';
+import '/widgets/template/widget/drawer.dart';
+import '/widgets/template/widget/subheader.dart';
 import 'package:flutter/material.dart';
 
 class ProdukUpdate extends StatefulWidget {
@@ -308,7 +307,6 @@ class _ProdukUpdateState extends State<ProdukUpdate> {
         ..isRemainStok = _isRemainStok
         ..hargaJual = double.tryParse(isNumericOrZero(_hargaJual.text))
         ..hargaBeli = double.tryParse(isNumericOrZero(_hargaBeli.text))
-        // TODO: Add in form optional
         ..beratProduk = 0
         ..ukuran = '' // Besar, Kecil
         ..isSpecial = false
@@ -320,11 +318,15 @@ class _ProdukUpdateState extends State<ProdukUpdate> {
 
       print(_produkModel.toJson());
 
-      final api = ApiService();
-      int? response = await api.update(
-          token: _token, endPoint: 'produk', param: _produkModel.id.toString(), data: _produkModel.toJson());
+      // final api = ApiService();
 
-      if (response == 200) Navigator.pop(context, true);
+      // int? response = await api.update(
+      //     token: _token,
+      //     endPoint: 'produk',
+      //     param: _produkModel.id.toString(),
+      //     data: _produkModel.toJson());
+
+      // if (response == 200) Navigator.pop(context, true);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

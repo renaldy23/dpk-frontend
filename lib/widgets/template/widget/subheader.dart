@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/widgets/base/padding.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
+import '/style.dart';
+import '/widgets/base/padding.dart';
+import '/widgets/base/responsive.dart';
 
 class TemplateWidgetSubHeader extends StatelessWidget {
   const TemplateWidgetSubHeader({

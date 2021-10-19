@@ -1,5 +1,5 @@
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/widgets/base/responsive.dart';
+import '/style.dart';
+import '/widgets/base/responsive.dart';
 import 'package:flutter/material.dart';
 
 class TemplateBase extends StatefulWidget {
@@ -50,7 +50,7 @@ class _TemplateBaseState extends State<TemplateBase> {
                     if (widget.header != null) widget.header!,
                     if (widget.header != null)
                       SizedBox(height: styleDefaultPadding),
-        
+
                     // Content
                     widget.content,
                   ],

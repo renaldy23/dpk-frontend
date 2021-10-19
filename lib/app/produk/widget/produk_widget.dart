@@ -1,8 +1,8 @@
-import 'package:dpkfrontend/widgets/base/container.dart';
+import '/widgets/base/container.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/widgets/base/textformfield.dart';
+import '/style.dart';
+import '/widgets/base/textformfield.dart';
 
 Widget namaProduk(TextEditingController controller) => TextFormFieldCustom(
       controller: controller,
@@ -20,36 +20,35 @@ Widget kodeProduk(TextEditingController controller) => TextFormFieldCustom(
       validator: true,
     );
 
-Widget fotoProduk() =>
-      ContainerBoxSecondary(child: Image.asset('images/empty-image.jpg'),);
+Widget fotoProduk() => ContainerBoxSecondary(
+      child: Image.asset('images/empty-image.jpg'),
+    );
 
 Widget hargaJual(TextEditingController controller) => TextFormFieldCustom(
-        controller: controller,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Harga Jual',
-        hintText: 'Masukkan harga jual',
-        validator: true,
-      );
+      controller: controller,
+      padding: EdgeInsets.all(styleDefaultPadding),
+      labelText: 'Harga Jual',
+      hintText: 'Masukkan harga jual',
+      validator: true,
+    );
 
 Widget hargaBeli(TextEditingController controller) => TextFormFieldCustom(
-        controller: controller,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Harga Beli',
-        hintText: 'Masukkan harga beli',
-      );
+      controller: controller,
+      padding: EdgeInsets.all(styleDefaultPadding),
+      labelText: 'Harga Beli',
+      hintText: 'Masukkan harga beli',
+    );
 
- Widget jumlahStok(TextEditingController controller) => TextFormFieldCustom(
-        controller: controller,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Jumlah Stok',
-        hintText: 'Masukkan jumlah stok',
-      );
+Widget jumlahStok(TextEditingController controller) => TextFormFieldCustom(
+      controller: controller,
+      padding: EdgeInsets.all(styleDefaultPadding),
+      labelText: 'Jumlah Stok',
+      hintText: 'Masukkan jumlah stok',
+    );
 
 Widget minimumStok(TextEditingController controller) => TextFormFieldCustom(
-        controller: controller,
-        padding: EdgeInsets.all(styleDefaultPadding),
-        labelText: 'Minimum Stok',
-        hintText: 'Masukkan minimum stok',
-      );
-
-
+      controller: controller,
+      padding: EdgeInsets.all(styleDefaultPadding),
+      labelText: 'Minimum Stok',
+      hintText: 'Masukkan minimum stok',
+    );

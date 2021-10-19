@@ -1,14 +1,17 @@
-import 'package:dpkfrontend/app/home/page/home.dart';
-import 'package:dpkfrontend/app/produk/page/produk_create.dart';
-import 'package:dpkfrontend/app/produk/page/produk_list.dart';
-import 'package:dpkfrontend/app/produk/page/produk_update.dart';
-import 'package:dpkfrontend/app/supplier/supplier_page.dart';
-import 'package:dpkfrontend/widgets/page/page_not_found.dart';
-import 'package:dpkfrontend/widgets/template/layout/dashboard.dart';
+import '/app/kategori/page/kategori_form.dart';
+
+import '/app/home/page/home.dart';
+import '/app/produk/page/produk_create.dart';
+import '/app/produk/page/produk_list.dart';
+import '/app/produk/page/produk_update.dart';
+import '/app/supplier/supplier_page.dart';
+import '/widgets/page/page_not_found.dart';
+import '/widgets/template/layout/dashboard.dart';
 import 'package:flutter/material.dart';
 
-import 'app/home/page/landing.dart';
+import '/app/home/page/landing.dart';
 import '/app/user/login_page.dart';
+import '/app/kategori/page/kategori_list.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   // print(routeSettings.name);
@@ -36,9 +39,23 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
       );
 
-    // Master
-    // case '/kategori':
-    //   return MaterialPageRoute(builder: (context) => KategoriPage());
+    // Kategori
+    case '/kategori':
+      return MaterialPageRoute(
+          builder: (context) => TemplateDashboard(
+                title: 'Kategori',
+                content: KategoriList(),
+              ));
+    case '/kategori-create':
+      return MaterialPageRoute(
+        builder: (context) => KategoriFormPage(isUpdate: false),
+        settings: routeSettings,
+      );
+    case '/kategori-update':
+      return MaterialPageRoute(
+        builder: (context) => KategoriFormPage(isUpdate: true),
+        settings: routeSettings,
+      );
 
     case '/supplier':
       return MaterialPageRoute(

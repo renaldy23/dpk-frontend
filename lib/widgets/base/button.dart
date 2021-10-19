@@ -1,8 +1,8 @@
-import 'package:dpkfrontend/style.dart';
+import '/style.dart';
 import 'package:flutter/material.dart';
 
 class ButtonBox extends StatelessWidget {
- const ButtonBox({
+  const ButtonBox({
     Key? key,
     required this.title,
     required this.onPressed,

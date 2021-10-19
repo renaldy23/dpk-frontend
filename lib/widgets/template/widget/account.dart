@@ -1,3 +1,4 @@
+import 'package:dpkfrontend/app/user/user_service.dart';
 import 'package:flutter/material.dart';
 import '/style.dart';
 import '../../base/responsive.dart';
@@ -22,9 +23,12 @@ class TemplateWidgetAccount extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            "images/profile_pic.png",
-            height: 38,
+          GestureDetector(
+            child: Image.asset(
+              "images/profile_pic.png",
+              height: 38,
+            ),
+            onTap: () async => UserService().logout(context),
           ),
           if (!Responsive.isMobile(context))
             Padding(

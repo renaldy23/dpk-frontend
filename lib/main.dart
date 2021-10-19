@@ -1,4 +1,4 @@
-import 'package:dpkfrontend/pub/shared_preferences/shared_preferences.dart';
+import '/pub/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +13,6 @@ import 'router.dart' as router;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load from assets/cfg/app_settings.json
   await GlobalConfiguration().loadFromAsset("app_settings");
 
   final sharedPref = await SharedPreferences.getInstance();
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: _globalConfig.get('appTitle'),
       theme: ThemeData.dark().copyWith(
-      // theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: styleBgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: Colors.white),

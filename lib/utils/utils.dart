@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:dpkfrontend/style.dart';
-import 'package:dpkfrontend/pub/dropdown_search/dropdown_search.dart';
+import '/style.dart';
+import '/pub/dropdown_search/dropdown_search.dart';
 
 // Functions
 bool isNumeric(String? s) {
@@ -57,10 +57,10 @@ class CheckboxListTileUtils extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-        controlAffinity: ListTileControlAffinity.leading,
-        title: title,
-        value: value,
-        onChanged: onChanged,
+      controlAffinity: ListTileControlAffinity.leading,
+      title: title,
+      value: value,
+      onChanged: onChanged,
     );
   }
 }
