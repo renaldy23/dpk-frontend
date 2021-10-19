@@ -29,7 +29,12 @@ class TemplateWidgetDrawer extends StatelessWidget {
           DrawerListTile(
             title: "Pesan Barang",
             svgSrc: "assets/icons/truck.svg",
-             press: () => Navigator.pushNamed(context, '/kategori'),
+            press: () => Navigator.pushNamed(context, '/kategori'),
+          ),
+          DrawerListTile(
+            title: "Supplier",
+            svgSrc: "assets/icons/menu_store.svg",
+            press: () => Navigator.pushNamed(context, '/supplier'),
           ),
           DrawerListTile(
             title: "Transaksi",
@@ -43,7 +48,6 @@ class TemplateWidgetDrawer extends StatelessWidget {
           //   press: () {},
           // ),
 
-
           // DrawerListTile(
           //   title: "Task",
           //   svgSrc: "assets/icons/menu_task.svg",
@@ -54,13 +58,13 @@ class TemplateWidgetDrawer extends StatelessWidget {
           //   svgSrc: "assets/icons/menu_doc.svg",
           //   press: () {},
           // ),
-          
+
           // DrawerListTile(
           //   title: "Notification",
           //   svgSrc: "assets/icons/menu_notification.svg",
           //   press: () {},
           // ),
-          
+
           DrawerListTile(
             title: "Pengaturan",
             svgSrc: "assets/icons/menu_setting.svg",

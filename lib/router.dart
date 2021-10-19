@@ -1,10 +1,12 @@
+import 'package:dpkfrontend/app/supplier/page/supplier_create.dart';
+import 'package:dpkfrontend/app/supplier/page/supplier_list.dart';
+
 import '/app/kategori/page/kategori_form.dart';
 
 import '/app/home/page/home.dart';
 import '/app/produk/page/produk_create.dart';
 import '/app/produk/page/produk_list.dart';
 import '/app/produk/page/produk_update.dart';
-import '/app/supplier/supplier_page.dart';
 import '/widgets/page/page_not_found.dart';
 import '/widgets/template/layout/dashboard.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ import 'package:flutter/material.dart';
 import '/app/home/page/landing.dart';
 import '/app/user/login_page.dart';
 import '/app/kategori/page/kategori_list.dart';
+// import 'app/supplier/page/supplier_list.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   // print(routeSettings.name);
@@ -59,8 +62,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
 
     case '/supplier':
       return MaterialPageRoute(
-        builder: (context) => SupplierPage(),
+        builder: (context) => SupplierList(),
       );
+
+    case '/supplier-create':
+      return MaterialPageRoute(builder: (context) => SupplierCreate());
+      
 
     default:
       return MaterialPageRoute(

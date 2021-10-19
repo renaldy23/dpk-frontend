@@ -94,6 +94,7 @@ class _KategoriFormPageState extends State<KategoriFormPage> {
         createdById: _appModel.userModel!.id,
         createdAt: DateTime.now().toIso8601String(),
       );
+      print(_kategoriModel.toJson());
 
       ApiResponseModel response;
 
@@ -128,8 +129,6 @@ class _KategoriFormPageState extends State<KategoriFormPage> {
       } catch (e) {
         showSnackBarCustom(context, e.toString());
       }
-
-     
     }
   }
 
