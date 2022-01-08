@@ -157,47 +157,9 @@ class _LoginPageState extends State<LoginPage> {
                 return null;
               }),
         ),
-
-        // Lupa password
-        // GestureDetector(
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(right: 16),
-        //     child: Text('Lupa?',
-        //         style: boldTextStyle(size: 14, color: stylePrimaryColor)),
-        //   ),
-        //   onTap: () {
-        //   },
-        // ),
-
-
       ],
     );
   }
-
-  // List<Widget> _buildFooterButtons() {
-  //   return <Widget>[
-  //     Container(
-  //       height: 40,
-  //       padding: EdgeInsets.only(left: 15, right: 15),
-  //       width: MediaQuery.of(context).copyWith().size.width,
-  //       child: Row(
-  //         crossAxisAlignment: CrossAxisAlignment.center,
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           // Bottom Button
-  //           Text('Tidak punya akun?', style: secondaryTextStyle()),
-  //           TextButton(
-  //             onPressed: () {
-  //               // SignUpPage().launch(context);
-  //             },
-  //             child: Text('DAFTAR',
-  //                 style: boldTextStyle(size: 14, color: stylePrimaryColor)),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   ];
-  // }
 
   // Function
   Future _login() async {

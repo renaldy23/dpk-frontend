@@ -1,5 +1,4 @@
 import 'package:dpkfrontend/app/supplier/data/supplier_model.dart';
-import 'package:dpkfrontend/app/supplier/widget/supplier_widget.dart';
 import 'package:dpkfrontend/app/user/user_service.dart';
 import 'package:dpkfrontend/utils/api_model.dart';
 import 'package:dpkfrontend/utils/api_service.dart';
